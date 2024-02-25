@@ -12,6 +12,8 @@ import subprocess
 import platform
 
 
+
+#edited
 class Face_Recognition_System:
     def __init__(self,root): 
         self.root=root
