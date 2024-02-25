@@ -63,8 +63,8 @@ class Train:
             self.root.after(1, self.train_images, path, faces, ids, total_images)
             self.current_idx += 1
         else:
-            self.progress_bar.destroy()  # Remove progress bar after training
             self.finish_training(faces, ids)
+            self.progress_bar.destroy()  # Remove progress bar after training
 
     def finish_training(self, faces, ids):
         ids = np.array(ids)

@@ -6,7 +6,7 @@ from datetime import datetime
 import webbrowser
 
 class Face_Recognition:
-
+#new
     def __init__(self, root):
         self.root=root
         self.root.geometry("1710x1150+0+0")
@@ -79,18 +79,17 @@ class Face_Recognition:
                     cv2.putText(img,f"Name:{n}",(x,y-55),cv2.FONT_HERSHEY_COMPLEX,0.8,(64,15,223),2)
                     cv2.putText(img,f"Roll:{r}",(x,y-30),cv2.FONT_HERSHEY_COMPLEX,0.8,(64,15,223),2)
                     self.mark_attendance(i,r,n,c)
-
-                    if key == ord('r') and coord:  # 'r' key pressed and face detected
-                        redirect_to_website()
                     
                 else:
                     cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),3)
                     cv2.putText(img,"Unknown Face",(x,y-5),cv2.FONT_HERSHEY_COMPLEX,0.8,(255,255,0),3)    
+                    return False
 
                 coord=[x,y,w,y]
             
             return coord    
 
+        r_pressed=False
 
         def recognize(img, clf, faceCascade):
             coord = draw_boundray(img, faceCascade, 1.1, 10, (255, 25, 255), "Face", clf)
@@ -114,9 +113,11 @@ class Face_Recognition:
 
             if key == 13:  # Enter key to exit
                 break
-            # elif key == ord('r') and coord:  # 'r' key pressed and face detected
-            #     redirect_to_website()  # Call the function to redirect to the website
-
+            elif key == ord('r') and coord and not r_pressed:
+                r_pressed=True                    # 'r' key pressed and face detected
+                redirect_to_website()  # Call the function to redirect to the website
+            elif key!=ord('r'):
+                r_pressed=False
         videoCap.release()
         cv2.destroyAllWindows()
 
