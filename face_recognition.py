@@ -74,7 +74,7 @@ class Face_Recognition:
                 c = c_result[0] if c_result is not None else "Unknown"
 
 
-                if confidence > 88:
+                if confidence > 77:
                     cv2.putText(img,f"Student_id:{i}",(x,y-80),cv2.FONT_HERSHEY_COMPLEX,0.8,(64,15,223),2)
                     cv2.putText(img,f"Name:{n}",(x,y-55),cv2.FONT_HERSHEY_COMPLEX,0.8,(64,15,223),2)
                     cv2.putText(img,f"Roll:{r}",(x,y-30),cv2.FONT_HERSHEY_COMPLEX,0.8,(64,15,223),2)
@@ -82,7 +82,8 @@ class Face_Recognition:
                     
                 else:
                     cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),3)
-                    cv2.putText(img,"Unknown Face",(x,y-5),cv2.FONT_HERSHEY_COMPLEX,0.8,(255,255,0),3)    
+                    cv2.putText(img,"Unknown Face",(x,y-5),cv2.FONT_HERSHEY_COMPLEX,0.8,(255,255,0),3)   
+                     
                     return False
 
                 coord=[x,y,w,y]
@@ -96,7 +97,7 @@ class Face_Recognition:
             return img, coord
 
         def redirect_to_website():
-            webbrowser.open("https://www.example.com")  # Replace with your desired website URL
+            webbrowser.open("https://sparkling-starship-e44032.netlify.app/")  # Replace with your desired website URL
 
         faceCascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
         clf = cv2.face.LBPHFaceRecognizer_create()
